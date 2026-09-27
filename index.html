@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gwen Dress Collection | Trendy Women's Fashion</title>
+  
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #fdfafb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: #ffffff;
+      padding: 16px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #d81b60;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #444;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #d81b60;
+    }
+
+    /* Hero Banner */
+    .hero {
+      text-align: center;
+      padding: 70px 20px;
+      background: linear-gradient(135deg, #fff0f3 0%, #fde2e8 100%);
+    }
+
+    .hero h1 {
+      font-size: 40px;
+      color: #880e4f;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: #555;
+      max-width: 620px;
+      margin: 0 auto 24px;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      background: #d81b60;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);
+      transition: 0.3s;
+    }
+
+    .btn-hero:hover {
+      background: #ad1457;
+      transform: translateY(-2px);
+    }
+
+    /* Products Container */
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 35px;
+      font-size: 32px;
+      color: #222;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: #d81b60;
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .product-info {
+      padding: 18px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-info h3 {
+      font-size: 18px;
+      color: #222;
+      margin-bottom: 6px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: 700;
+      color: #d81b60;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-details {
+      flex: 1;
+      padding: 9px;
+      background: #f1f3f5;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-details:hover {
+      background: #e9ecef;
+      border-color: #bbb;
+    }
+
+    .btn-order {
+      flex: 1.2;
+      text-align: center;
+      background-color: #25d366;
+      color: #fff;
+      padding: 9px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: background 0.2s;
+    }
+
+    .btn-order:hover {
+      background-color: #1ebe5d;
+    }
+
+    /* Modal / View Details Popup */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 14px;
+      max-width: 780px;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      position: relative;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 26px;
+      color: #666;
+      cursor: pointer;
+      line-height: 1;
+      z-index: 10;
+    }
+
+    .modal-close:hover {
+      color: #d81b60;
+    }
+
+    .modal-img {
+      width: 48%;
+      object-fit: cover;
+      max-height: 480px;
+    }
+
+    .modal-details {
+      padding: 30px;
+      width: 52%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .modal-details h2 {
+      font-size: 22px;
+      color: #222;
+      margin-bottom: 6px;
+    }
+
+    .modal-details .modal-price {
+      font-size: 24px;
+      color: #d81b60;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .modal-info-list {
+      list-style: none;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .modal-info-list li {
+      margin-bottom: 8px;
+    }
+
+    .modal-info-list strong {
+      color: #111;
+    }
+
+    .modal-whatsapp-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: #25d366;
+      color: #fff;
+      padding: 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .modal-whatsapp-btn:hover {
+      background: #1ebe5d;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: #ffffff;
+      padding: 45px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 25px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background: #fafafa;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #333;
+      border: 1px solid #eee;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .contact-item:hover {
+      border-color: #d81b60;
+      color: #d81b60;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      background: #1f1f1f;
+      color: #aaa;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .modal-content {
+        flex-direction: column;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-img {
+        width: 100%;
+        height: 260px;
+      }
+      .modal-details {
+        width: 100%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">Gwen Dress Collection</div>
+    <div class="nav-links">
+      <a href="#collection">Collection</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Trendy & Elegant Fashion</h1>
+    <p>Discover our exclusive selection of kurtis, floral maxis, party wear, and festive gowns.</p>
+    <a href="#collection" class="btn-hero">Explore Catalog</a>
+  </section>
+
+  <!-- Products Section -->
+  <div class="container" id="collection">
+    <h2 class="section-title">New Collection</h2>
+    
+    <div class="product-grid">
+
+      <!-- Item 1 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500" alt="Floral Cotton Maxi" onclick="openDetails(0)">
+        <div class="product-info">
+          <h3>Floral Cotton Maxi</h3>
+          <div class="price-row">
+            <span class="price">₹899</span>
+          </div>
+          <div class="btn-group">
+            <button class="btn-details" onclick="openDetails(0)"><i class="fa-regular fa-eye"></i> Details</button>
+            <a class="btn-order" href="https://wa.me/917010067689?text=Hi%20Gwen%20Dress%20Collection,%20I%20want%20to%20order%20the%20Floral%20Cotton%20Maxi%20(₹899)" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=500" alt="Designer Kurti Set" onclick="openDetails(1)">
+        <div class="product-info">
+          <h3>Designer Kurti Set</h3>
+          <div class="price-row">
+            <span class="price">₹1,499</span>
+          </div>
+          <div class="btn-group">
+            <button class="btn-details" onclick="openDetails(1)"><i class="fa-regular fa-eye"></i> Details</button>
+            <a class="btn-order" href="https://wa.me/917010067689?text=Hi%20Gwen%20Dress%20Collection,%20I%20want%20to%20order%20the%20Designer%20Kurti%20Set%20(₹1,499)" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=500" alt="Casual Western Midi" onclick="openDetails(2)">
+        <div class="product-info">
+          <h3>Casual Western Midi</h3>
+          <div class="price-row">
+            <span class="price">₹799</span>
+          </div>
+          <div class="btn-group">
+            <button class="btn-details" onclick="openDetails(2)"><i class="fa-regular fa-eye"></i> Details</button>
+            <a class="btn-order" href="https://wa.me/917010067689?text=Hi%20Gwen%20Dress%20Collection,%20I%20want%20to%20order%20the%20Casual%20Western%20Midi%20(₹799)" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=500" alt="Party Wear Gown" onclick="openDetails(3)">
+        <div class="product-info">
+          <h3>Party Wear Gown</h3>
+          <div class="price-row">
+            <span class="price">₹1,999</span>
+          </div>
+          <div class="btn-group">
+            <button class="btn-details" onclick="openDetails(3)"><i class="fa-regular fa-eye"></i> Details</button>
+            <a class="btn-order" href="https://wa.me/917010067689?text=Hi%20Gwen%20Dress%20Collection,%20I%20want%20to%20order%20the%20Party%20Wear%20Gown%20(₹1,999)" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500" alt="Summer Cotton Kurti" onclick="openDetails(4)">
+        <div class="product-info">
+          <h3>Summer Cotton Kurti</h3>
+          <div class="price-row">
+            <span class="price">₹599</span>
+          </div>
+          <div class="btn-group">
+            <button class="btn-details" onclick="openDetails(4)"><i class="fa-regular fa-eye"></i> Details</button>
+            <a class="btn-order" href="https://wa.me/917010067689?text=Hi%20Gwen%20Dress%20Collection,%20I%20want%20to%20order%20the%20Summer%20Cotton%20Kurti%20(₹599)" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500" alt="Chic Satin Co-ord Set" onclick="openDetails(5)">
+        <div class="product-info">
+          <h3>Chic Satin Co-ord Set</h3>
+          <div class="price-row">
+            <span class="price">₹1,299</span>
+          </div>
+          <div class="btn-group">
+            <button class="btn-details" onclick="openDetails(5)"><i class="fa-regular fa-eye"></i> Details</button>
+            <a class="btn-order" href="https://wa.me/917010067689?text=Hi%20Gwen%20Dress%20Collection,%20I%20want%20to%20order%20the%20Chic%20Satin%20Co-ord%20Set%20(₹1,299)" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 7 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500" alt="Velvet Evening Dress" onclick="openDetails(6)">
+        <div class="product-info">
+          <h3>Velvet Evening Dress</h3>
+          <div class="price-row">
+            <span class="price">₹2,199</span>
+          </div>
+          <div class="btn-group">
+            <button class="btn-details" onclick="openDetails(6)"><i class="fa-regular fa-eye"></i> Details</button>
+            <a class="btn-order" href="https://wa.me/917010067689?text=Hi%20Gwen%20Dress%20Collection,%20I%20want%20to%20order%20the%20Velvet%20Evening%20Dress%20(₹2,199)" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 8 -->
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500" alt="Silk Anarkali Suit" onclick="openDetails(7)">
+        <div class="product-info">
+          <h3>Silk Anarkali Suit</h3>
+          <div class="price-row">
+            <span class="price">₹1,850</span>
+          </div>
+          <div class="btn-group">
+            <button class="btn-details" onclick="openDetails(7)"><i class="fa-regular fa-eye"></i> Details</button>
+            <a class="btn-order" href="https://wa.me/917010067689?text=Hi%20Gwen%20Dress%20Collection,%20I%20want%20to%20order%20the%20Silk%20Anarkali%20Suit%20(₹1,850)" target="_blank">
+              <i class="fa-brands fa-whatsapp"></i> Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section" id="contact">
+      <h2 style="font-size: 24px; margin-bottom: 8px;">Order & Custom Inquiries</h2>
+      <p style="color: #666;">Contact us for bulk orders, custom stitching, or size queries.</p>
+      
+      <div class="contact-links">
+        <a class="contact-item" href="https://wa.me/917010067689" target="_blank" style="color: #25d366;">
+          <i class="fa-brands fa-whatsapp"></i> +91 70100 67689
+        </a>
+        <a class="contact-item" href="https://instagram.com/dhama_ofz" target="_blank" style="color: #e1306c;">
+          <i class="fa-brands fa-instagram"></i> @dhama_ofz
+        </a>
+        <a class="contact-item" href="mailto:dhamayanthidhamayanthis60@gmail.com">
+          <i class="fa-regular fa-envelope"></i> dhamayanthidhamayanthis60@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Details Modal Popup -->
+  <div class="modal-overlay" id="productModal" onclick="closeDetailsOutside(event)">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeDetails()">&times;</span>
+      <img id="modalImg" class="modal-img" src="" alt="Dress Preview">
+      <div class="modal-details">
+        <div>
+          <h2 id="modalTitle">Dress Name</h2>
+          <div class="modal-price" id="modalPrice">₹0</div>
+          <ul class="modal-info-list">
+            <li><strong>Fabric:</strong> <span id="modalFabric">Cotton</span></li>
+            <li><strong>Available Sizes:</strong> <span id="modalSizes">S, M, L, XL, XXL</span></li>
+            <li><strong>Occasion:</strong> <span id="modalOccasion">Casual / Party</span></li>
+            <li><strong>Wash Care:</strong> Gentle Machine / Hand Wash</li>
+            <li><strong>Delivery:</strong> Dispatched in 24-48 Hours</li>
+          </ul>
+        </div>
+        <a id="modalWhatsappLink" class="modal-whatsapp-btn" href="#" target="_blank">
+          <i class="fa-brands fa-whatsapp"></i> Order this on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 Gwen Dress Collection. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Modal Script -->
+  <script>
+    const products = [
+      {
+        title: "Floral Cotton Maxi",
+        price: "₹899",
+        fabric: "100% Pure Breathable Cotton",
+        sizes: "S, M, L, XL",
+        occasion: "Everyday Casual & Outing",
+        image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=700"
+      },
+      {
+        title: "Designer Kurti Set",
+        price: "₹1,499",
+        fabric: "Chanderi Rayon with Dupatta & Pants",
+        sizes: "M, L, XL, XXL",
+        occasion: "Festive & Family Celebrations",
+        image: "https://images.unsplash.com/photo-1618932260643-eee4a2f652a6?w=700"
+      },
+      {
+        title: "Casual Western Midi",
+        price: "₹799",
+        fabric: "Soft Crepe with Elastic Waist Belt",
+        sizes: "S, M, L",
+        occasion: "College & Weekend Brunches",
+        image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=700"
+      },
+      {
+        title: "Party Wear Gown",
+        price: "₹1,999",
+        fabric: "Premium Georgette with Inner Lining",
+        sizes: "S, M, L, XL",
+        occasion: "Reception & Birthday Parties",
+        image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=700"
+      },
+      {
+        title: "Summer Cotton Kurti",
+        price: "₹599",
+        fabric: "Slub Cotton with Wooden Button Detailing",
+        sizes: "M, L, XL, XXL, 3XL",
+        occasion: "Office & Daily Comfort Wear",
+        image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=700"
+      },
+      {
+        title: "Chic Satin Co-ord Set",
+        price: "₹1,299",
+        fabric: "Imported Satin Silk (Shirt + Trousers)",
+        sizes: "S, M, L",
+        occasion: "Evening Hangouts & Modern Western",
+        image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700"
+      },
+      {
+        title: "Velvet Evening Dress",
+        price: "₹2,199",
+        fabric: "Plush Stretch Velvet with Slit",
+        sizes: "S, M, L, XL",
+        occasion: "Cocktail Nights & Grand Galas",
+        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700"
+      },
+      {
+        title: "Silk Anarkali Suit",
+        price: "₹1,850",
+        fabric: "Art Silk with Zari Work & Organza Dupatta",
+        sizes: "M, L, XL, XXL",
+        occasion: "Weddings, Pooja & Festivals",
+        image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700"
+      }
+    ];
+
+    function openDetails(index) {
+      const item = products[index];
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalPrice').innerText = item.price;
+      document.getElementById('modalFabric').innerText = item.fabric;
+      document.getElementById('modalSizes').innerText = item.sizes;
+      document.getElementById('modalOccasion').innerText = item.occasion;
+      document.getElementById('modalImg').src = item.image;
+      
+      const whatsappText = encodeURIComponent(`Hi Gwen Dress Collection, I am interested in ordering: ${item.title} (${item.price}). Please share available sizes.`);
+      document.getElementById('modalWhatsappLink').href = `https://wa.me/917010067689?text=${whatsappText}`;
+
+      document.getElementById('productModal').style.display = 'flex';
+    }
+
+    function closeDetails() {
+      document.getElementById('productModal').style.display = 'none';
+    }
+
+    function closeDetailsOutside(e) {
+      if (e.target.id === 'productModal') {
+        closeDetails();
+      }
+    }
+  </script>
+
+</body>
+</html>
